@@ -17,19 +17,17 @@ public class Environnement {
         }
         return uniqueEnv;
     }
+
     public void addUnit(GameObject gaunit)
     {
-        Debug.Log("env will add unit");
         int teamAgent = gaunit.GetComponent<CircleUnits>().getTeam();
         if (teamAgent == 1)
         {
             iaUnits.Add(gaunit);
-            Debug.Log("env added iaunit");
         }
         else
         {
             playerUnits.Add(gaunit);
-            Debug.Log("env added playerunit");
         }
     }
 
@@ -41,5 +39,36 @@ public class Environnement {
     public List<GameObject> getPlayerunits()
     {
         return playerUnits;
+    }
+
+    public List<GameObject> computeProximityEnemies(GameObject gounit)
+    {
+        Vector3 positionUnit = gounit.transform.position;
+
+        float distancePerceptUnit = gounit.GetComponent<CircleUnits>().getDistancePercept();
+
+        int teamUnit = gounit.GetComponent<CircleUnits>().getTeam();
+
+        List<GameObject> enemies;
+        List<GameObject> proximitiesEnemies = new List<GameObject>();
+        if (teamUnit == 1)
+        {
+            enemies = playerUnits;
+        }
+        else
+        {
+            enemies = iaUnits;
+        }
+
+        foreach (GameObject go in enemies)
+        {
+            Vector3 positionA = go.transform.position;
+            float distance = Vector3.Distance(positionA, positionUnit);
+            if (distance <= distancePerceptUnit)
+            {
+                proximitiesEnemies.Add(go);
+            }
+        }
+        return proximitiesEnemies;
     }
 }

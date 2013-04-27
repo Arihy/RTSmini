@@ -2,7 +2,13 @@ using UnityEngine;
 using System.Collections;
 
 public class CircleUnits : MonoBehaviour {
-    public int team;
+    private int team;
+    private Environnement env;
+
+    public Environnement getEnv()
+    {
+        return env;
+    }
 
     public int getTeam()
     {
@@ -16,6 +22,7 @@ public class CircleUnits : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Debug.Log("start : " + team);
+        env = Environnement.getUniqueEnv();
 	}
 	
 	// Update is called once per frame

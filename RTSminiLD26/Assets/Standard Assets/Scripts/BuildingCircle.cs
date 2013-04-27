@@ -27,10 +27,14 @@ public class BuildingCircle : MonoBehaviour {
         else
         {
             //play animation prod
-            //créer une unité
+            //créer une unité - prefab CirlcleUnits
             Vector3 position = transform.position + transform.localScale / 2 + prefabUnit.transform.localScale / 2 + countUnits * (transform.localScale / 2 + prefabUnit.transform.localScale / 2);
             lastUnit = (GameObject) Instantiate(prefabUnit, position, Quaternion.identity);
+            //il faut définir la team de l'unité
             lastUnit.GetComponent<CircleUnits>().setTeam(team);
+            Environnement env = Environnement.getUniqueEnv();
+            Debug.Log("env :" + env);
+            env.addUnit(lastUnit);
             lastProdTime = now;
             countUnits++;
         }

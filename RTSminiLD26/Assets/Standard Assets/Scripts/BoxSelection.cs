@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BoxSelection : MonoBehaviour {
 
-    public Texture2D selectionHighlight = null;
+    public Texture2D selectionHighlight;
     public static Rect selection = new Rect(0, 0, 0, 0);
     private Vector3 startClick = -Vector3.one;
 

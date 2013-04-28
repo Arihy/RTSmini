@@ -2,47 +2,49 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class CircleUnits : Units {
-    public int team;
+public class CircleUnits : Units
+{
+   
+    private GameObject supporting;
 
-    private Environnement env;
-    private float distancePercept = 15.0f;
-
-    public Environnement getEnv()
+    public bool suscribeSupport(GameObject batProds)
     {
-        return env;
+        if (supporting != null) return false; //on ne peut pas supporter ailleurs si on supporte déjà
+        if (batProds.GetComponent<BuildingCircle>().addSupport(gameObject))
+        {
+            supporting = batProds;
+            return true;
+        }
+        return false;
     }
 
-    public int getTeam()
+    public bool unsuscribeSupport(GameObject batProds)
     {
-        return team;
+        if (batProds.GetComponent<BuildingCircle>().removeSupport(gameObject))
+        {
+            supporting = null;
+            return true;
+        }
+        return false;
     }
 
-    public void setTeam(int newTeam)
+    // Use this for initialization
+    public override void Start()
     {
-        team = newTeam;
-    }
-
-    public float getDistancePercept()
-    {
-        return distancePercept;
-    }
-
-    public List<GameObject> getProximityEnemies()
-    {
-        return env.computeProximityEnemies(gameObject);
-    }
-
-	// Use this for initialization
-	public override void Start () {
         base.Start();
         env = Environnement.getUniqueEnv();
+        distancePercept = 15.0f;
+        energy = 10.0f;
         Debug.Log("start : " + team);
-	}
-	
-	// Update is called once per frame
-	public override void Update () {
+    }
+
+    // Update is called once per frame
+    public override void Update()
+    {
         base.Update();
         Debug.Log("update : " + team);
+        suscribeSupport(getProximityProds()[0]);
+        if (supporting != null) Debug.Log(getId() + "supporting CC de la team : " + supporting.GetComponent<BuildingCircle>().getTeam());
+        else Debug.Log(getId() + " not supporting !!!");
     }
 }

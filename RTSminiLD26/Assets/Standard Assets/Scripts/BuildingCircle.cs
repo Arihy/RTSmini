@@ -1,26 +1,75 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class BuildingCircle : MonoBehaviour {
+public class BuildingCircle : MonoBehaviour
+{
 
-    public int team;
+    public int team; // 1 pour IA 2 pour le joueur
     private float delayBetweenProd;
     private float lastProdTime;
     public GameObject prefabUnit;
     private int countUnits;
     private GameObject lastUnit;
+    private Environnement env;
+    private int supportMax;
+    private int countSupport = 0;
+    private List<GameObject> support = new List<GameObject>();
 
-	// Use this for initialization
-	void Start () {
+    public int getTeam()
+    {
+        return team;
+    }
+
+    public int getNbSupportMax()
+    {
+        return supportMax;
+    }
+
+    public List<GameObject> getSupport()
+    {
+        return support;
+    }
+
+    public bool addSupport(GameObject go)
+    {
+        if (countSupport < supportMax && !support.Contains(go))
+        {
+            support.Add(go);
+            countSupport++;
+            return true;
+        }
+        return false;
+    }
+
+    public bool removeSupport(GameObject go)
+    {
+        if (countSupport > 0 && support.Contains(go))
+        {
+            support.Remove(go);
+            countSupport--;
+            return true;
+        }
+        return false;
+    }
+
+    // Use this for initialization
+    void Start()
+    {
         delayBetweenProd = 2;
         lastProdTime = Time.time;
         countUnits = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        env = Environnement.getUniqueEnv();
+        //enregistremet du batiment auprès de l'environnement
+        env.addProd(gameObject);
+        supportMax = 2;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         float now = Time.time;
-        if(countUnits < 3)
+        if (countUnits < 3)
         {
             if (now - lastProdTime < delayBetweenProd)
             {
@@ -35,10 +84,11 @@ public class BuildingCircle : MonoBehaviour {
                 //il faut définir la team de l'unité
                 lastUnit.GetComponent<CircleUnits>().setTeam(team);
                 Environnement env = Environnement.getUniqueEnv();
+                //on ajoute l'unité à l'environnement
                 env.addUnit(lastUnit);
                 lastProdTime = now;
                 countUnits++;
             }
         }
-	}
+    }
 }

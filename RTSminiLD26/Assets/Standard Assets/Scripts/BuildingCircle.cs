@@ -16,6 +16,17 @@ public class BuildingCircle : MonoBehaviour
     private int countSupport = 0;
     private List<GameObject> support = new List<GameObject>();
 
+    private int nbFrame = 0;
+    
+    //doit être appelé à la mort du bâtiment pour passer toutes les units en support à l'état idle
+    public void death()
+    {
+        foreach (GameObject go in support)
+        {
+            go.GetComponent<CircleUnits>().signalProdDeath();
+        }
+    }
+
     public int getTeam()
     {
         return team;
@@ -24,6 +35,11 @@ public class BuildingCircle : MonoBehaviour
     public int getNbSupportMax()
     {
         return supportMax;
+    }
+
+    public int getNbSupport()
+    {
+        return countSupport;
     }
 
     public List<GameObject> getSupport()
@@ -89,6 +105,11 @@ public class BuildingCircle : MonoBehaviour
                 lastProdTime = now;
                 countUnits++;
             }
+        }
+        nbFrame++;
+        if (nbFrame > 1000)
+        {
+            death();
         }
     }
 }

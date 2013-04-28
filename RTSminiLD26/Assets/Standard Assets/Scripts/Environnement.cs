@@ -40,6 +40,19 @@ public class Environnement
         gaunit.GetComponent<Units>().setId(currentId);
     }
 
+    public void removeUnit(GameObject gaunit)
+    {
+        int teamAgent = gaunit.GetComponent<CircleUnits>().getTeam();
+        if (teamAgent == 1)
+        {
+            iaUnits.Remove(gaunit);
+        }
+        else
+        {
+            playerUnits.Remove(gaunit);
+        }
+    }
+
     public List<GameObject> getIaUnits()
     {
         return iaUnits;

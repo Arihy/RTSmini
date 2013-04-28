@@ -13,6 +13,8 @@ public class Units : MonoBehaviour {
     protected float distancePercept;
     protected float energy;
     protected Vector3 destination;
+    protected float attackStrength;
+    protected int attackFrequency;
 
     public int getId()
     {
@@ -76,7 +78,10 @@ public class Units : MonoBehaviour {
         energy = energy - dmg;
     }
 
-
+    public void destroy()
+    {
+        Destroy(gameObject);
+    }
 
     //Start is called to intialize the instance
     public virtual void Start()

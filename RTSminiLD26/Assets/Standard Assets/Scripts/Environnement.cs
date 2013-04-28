@@ -91,8 +91,60 @@ public class Environnement
                 proximitiesEnemies.Add(go);
             }
         }
+
+        proximitiesEnemies = triDistance(proximitiesEnemies, gounit);
         return proximitiesEnemies;
     }
+
+    //méthode servant à trier les gameobjects dans un tableau suivant leurs distances par 
+    //rapport au gameobject de référence (le gameobject leplus proche en haut du tableau)
+    public List<GameObject> triDistance(List<GameObject> tab, GameObject go0)
+    {
+        Vector3 position0 = go0.transform.position;
+        int n = tab.Count;
+        List<GameObject> tableau = new List<GameObject>();
+        tableau = tab;
+
+        //On prend les gameobjects du tableau deux à deux en partant du haut, on calcule 
+        //leurs distances par rapport au gameobject goO, on compare les distances et on
+        //permute les deux gameobjects ou non de façon à ce que le plus proche se retrouve 
+        //le plus haut dans le tableau
+        for (int i = 0; i <= n - 2; i++)
+        {
+            for (int j = i + 1; j <= n-1; j++)
+            {
+                var distancei = Vector3.Distance(position0, tableau[i].transform.position);
+                var distancej = Vector3.Distance(position0, tableau[j].transform.position);
+
+                if (distancei > distancej)
+                    tableau = permute(i, j, tableau);
+            }
+        }
+        //on renvoie le tableau trié
+        return tableau;
+    }
+
+    //méthode servant à permuter deux gameobjects définis par leurs positions respectives i et j dans un tableau
+    public List<GameObject> permute(int i, int j, List<GameObject> tab)
+    {
+        List<GameObject> tableau1 = new List<GameObject>();
+        List<GameObject> tableau2 = new List<GameObject>();
+        tableau1 = tab;
+        int n = tableau1.Count;
+
+        for (int b=0; b <= n - 1; b++)
+        {
+            if (b == i)
+                tableau2[b] = tableau1[j];
+            else if (b == j)
+                tableau2[b] = tableau1[i];
+            else
+                tableau2[b] = tableau1[b];
+        }
+
+        return tableau2;
+    }
+
 
     public void addProd(GameObject gabat)
     {

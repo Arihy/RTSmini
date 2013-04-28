@@ -86,7 +86,7 @@ public class Environnement
         {
             Vector3 positionA = go.transform.position;
             float distance = Vector3.Distance(positionA, positionUnit);
-            if (distance <= distancePerceptUnit)
+            if (distance <= distancePerceptUnit) //TODO trier du plus proche au plus éloigné
             {
                 proximitiesEnemies.Add(go);
             }

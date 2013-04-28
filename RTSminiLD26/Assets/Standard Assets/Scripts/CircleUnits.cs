@@ -86,6 +86,7 @@ public class CircleUnits : Units
         currentState = STATE_BIRTH;
         env = Environnement.getUniqueEnv();
         distancePercept = 15.0f;
+        distanceAttack = 2.0f;
         energy = 10.0f;
         attackStrength = 2.0f;
         attackFrequency = 10;
@@ -98,6 +99,5 @@ public class CircleUnits : Units
         playAnim();
         attack();
         checkNewState();
-       
     }
 }

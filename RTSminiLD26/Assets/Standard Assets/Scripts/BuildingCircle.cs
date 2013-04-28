@@ -2,21 +2,12 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class BuildingCircle : MonoBehaviour
+public class BuildingCircle : Building
 {
-
-    public int team; // 1 pour IA 2 pour le joueur
-    private float delayBetweenProd;
-    private float lastProdTime;
     public GameObject prefabUnit;
-    private int countUnits;
-    private GameObject lastUnit;
-    private Environnement env;
     private int supportMax;
     private int countSupport = 0;
     private List<GameObject> support = new List<GameObject>();
-
-    private int nbFrame = 0;
     
     //doit être appelé à la mort du bâtiment pour passer toutes les units en support à l'état idle
     public void death()
@@ -25,11 +16,6 @@ public class BuildingCircle : MonoBehaviour
         {
             go.GetComponent<CircleUnits>().signalProdDeath();
         }
-    }
-
-    public int getTeam()
-    {
-        return team;
     }
 
     public int getNbSupportMax()
@@ -70,8 +56,9 @@ public class BuildingCircle : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
+        base.Start();
         delayBetweenProd = 2;
         lastProdTime = Time.time;
         countUnits = 0;
@@ -82,8 +69,9 @@ public class BuildingCircle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         float now = Time.time;
         if (countUnits < 3)
         {
@@ -105,11 +93,6 @@ public class BuildingCircle : MonoBehaviour
                 lastProdTime = now;
                 countUnits++;
             }
-        }
-        nbFrame++;
-        if (nbFrame > 1000)
-        {
-            death();
         }
     }
 }

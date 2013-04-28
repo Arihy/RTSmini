@@ -12,6 +12,7 @@ public class CircleUnits : Units
     public StateCircleUnit STATE_DEATH;
     public StateCircleUnit STATE_PROD;
     public StateCircleUnit STATE_ATTACK;
+    public StateCircleUnit STATE_GOINGTO;
 
     private StateCircleUnit lastState;
     private StateCircleUnit currentState;
@@ -71,7 +72,10 @@ public class CircleUnits : Units
         currentState.attack();
     }
 
-    //move
+    public void move()
+    {
+        currentState.move();
+    }
     //play sound
 
     // Use this for initialization
@@ -83,6 +87,7 @@ public class CircleUnits : Units
         STATE_DEATH = new DeathStateCircleUnit(gameObject);
         STATE_PROD = new ProdStateCircleUnit(gameObject);
         STATE_ATTACK = new AttackStateCircleUnit(gameObject);
+        STATE_GOINGTO = new GoingToStateCircleUnit(gameObject);
         currentState = STATE_BIRTH;
         env = Environnement.getUniqueEnv();
         distancePercept = 15.0f;
@@ -90,6 +95,8 @@ public class CircleUnits : Units
         energy = 10.0f;
         attackStrength = 2.0f;
         attackFrequency = 10;
+        speed = 5.0f;
+        destination = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -98,6 +105,7 @@ public class CircleUnits : Units
         base.Update();
         playAnim();
         attack();
+        move();
         checkNewState();
     }
 }

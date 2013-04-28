@@ -16,7 +16,7 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
         //TODO
     }
 
-    public override void checkOtherState()
+    public override void checkOtherState2()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         List<GameObject> enemies = unit.getProximityEnemies();

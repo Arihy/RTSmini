@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BoxSelection : MonoBehaviour {
 
@@ -7,15 +8,26 @@ public class BoxSelection : MonoBehaviour {
     public static Rect selection = new Rect(0, 0, 0, 0);
     private Vector3 startClick = -Vector3.one;
 
+
+
+    //Coordonnée de la destination (quand on a clické sur le bouton droit)
+    private static Vector3 moveTo = Vector3.one;
+
+    //liste des zones sur lesquels on peut marcher
+    private static List<string> walkables = new List<string>() { "Floor" };
+
+
+
 	// Use this for initialization
 	void Start () {
         Debug.Log("BoxSelection");
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
-      CheckCamera();
+	void Update()
+    {
+        CheckCamera();
+        clear();
     }
 
 
@@ -44,6 +56,18 @@ public class BoxSelection : MonoBehaviour {
                 selection.height = -selection.height;
             }
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            moveTo = Input.mousePosition;
+            Debug.Log("MoveTo : " + moveTo);
+        }
+    }
+
+    private void clear()
+    {
+        if (!Input.GetMouseButtonUp(1))
+            moveTo = Vector3.zero;
     }
 
     private void OnGUI()
@@ -59,6 +83,30 @@ public class BoxSelection : MonoBehaviour {
     {
         return Screen.height - y;
 
+    }
+
+    public static Vector3 getDestination()
+    {
+        if (moveTo == Vector3.zero)
+        {
+            RaycastHit hit;
+            Ray r = Camera.mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(r, out hit))
+            {
+                while (!walkables.Contains(hit.transform.gameObject.name))
+                {
+                    if (!Physics.Raycast(hit.point, r.direction, out hit))
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if(hit.transform != null)
+                moveTo = hit.point;
+        }
+        return moveTo;
     }
 
 	

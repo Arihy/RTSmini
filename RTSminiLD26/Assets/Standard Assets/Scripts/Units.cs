@@ -8,6 +8,8 @@ public class Units : MonoBehaviour {
 
     public bool selected = false;
     public int team;
+    protected float speed;
+    protected float stopDistanceOffset = 0.5f;
 
     protected Environnement env;
     protected float distancePercept;
@@ -18,6 +20,9 @@ public class Units : MonoBehaviour {
     protected int attackFrequency;
     private int nbFrameSinceLastShot;
 
+    public float floorOffset = 1;
+    private Vector3 moveToDestination = Vector3.zero;
+
     public int getId()
     {
         return id;
@@ -26,6 +31,26 @@ public class Units : MonoBehaviour {
     public void setId(int newId)
     {
         id = newId;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public float getStopDistanceOffset()
+    {
+        return stopDistanceOffset;
+    }
+
+    public Vector3 getDestination()
+    {
+        return destination;
+    }
+
+    public void setDestination(Vector3 dest)
+    {
+        destination = dest ;
     }
 
     public Environnement getEnv()
@@ -112,7 +137,6 @@ public class Units : MonoBehaviour {
     //Start is called to intialize the instance
     public virtual void Start()
     {
-        Debug.Log("start Units");
         nbFrameSinceLastShot = 0;
     }
 	
@@ -124,14 +148,41 @@ public class Units : MonoBehaviour {
             Vector3 camPos = Camera.mainCamera.WorldToScreenPoint(transform.position);
             camPos.y = BoxSelection.InvertMouseY(camPos.y);
             selected = BoxSelection.selection.Contains(camPos);
+
+            if (selected)
+            {
+                //must change state
+                renderer.material.color = Color.red;
+            }
+            else //must change state
+                renderer.material.color = Color.white;
         }
-        if (selected)
+
+        if (selected && Input.GetMouseButtonUp(1))
         {
-            //must change state
-            renderer.material.color = Color.red;
+           
+            //Récupérer la position du clic droit
+            //Vector3 dest = BoxSelection.getDestination();
+            RaycastHit hit;
+            Ray r = Camera.mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(r, out hit))
+            {
+                Vector3 dest = hit.point;
+                Debug.Log("destination : " + dest);
+
+                if (dest != Vector3.zero)
+                {
+
+                    moveToDestination = dest;
+                    moveToDestination.y += floorOffset;
+                }
+                //transmettre la position du clic à l'unit
+                destination = dest;
+            }
+            
         }
-        else //must change state
-            renderer.material.color = Color.white;
-	
+
 	}
+
 }

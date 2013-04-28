@@ -11,11 +11,11 @@ public class ProdStateCircleUnit : RightClickableStateCircleUnit
 
     public override void playAnim()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is in PROD");
+       // Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is in PROD");
         //TODO
     }
 
-    public override void checkOtherState()
+    public override void checkOtherState2()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         //si le bâtiment de production n'existe plus on passe en idle

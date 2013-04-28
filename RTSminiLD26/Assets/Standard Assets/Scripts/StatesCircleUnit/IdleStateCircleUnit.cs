@@ -12,11 +12,11 @@ public class IdleStateCircleUnit : RightClickableStateCircleUnit
 
     public override void playAnim()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is IDLE");
+       // Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is IDLE");
         //TODO
     }
 
-    public override void checkOtherState()
+    public override void checkOtherState2()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         List<GameObject> enemies = unit.getProximityEnemies();

@@ -12,7 +12,7 @@ public class BirthStateCircleUnit : StateCircleUnit
 
     public override void playAnim()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is just BIRTH");
+        //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is just BIRTH");
         //TODO
     }
 
@@ -32,7 +32,7 @@ public class BirthStateCircleUnit : StateCircleUnit
                 if (prod.getNbSupport() < prod.getNbSupportMax())
                 {
                     findSupportNeeded = unit.suscribeSupport(prods[countSupport]);
-                    Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " should PROD");
+                   // Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " should PROD");
                     unit.setCurrentState(unit.STATE_PROD);
                 }
                 countSupport++;

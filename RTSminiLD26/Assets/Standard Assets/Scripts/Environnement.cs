@@ -10,6 +10,9 @@ public class Environnement
     private List<GameObject> playerUnits = new List<GameObject>();
     private List<GameObject> iaProds = new List<GameObject>();
     private List<GameObject> playerProds = new List<GameObject>();
+
+    private int currentId;
+
     private static Environnement uniqueEnv;
 
     public static Environnement getUniqueEnv()
@@ -17,6 +20,7 @@ public class Environnement
         if (uniqueEnv == null)
         {
             uniqueEnv = new Environnement();
+            uniqueEnv.currentId = 0;
         }
         return uniqueEnv;
     }
@@ -32,6 +36,8 @@ public class Environnement
         {
             playerUnits.Add(gaunit);
         }
+        currentId++;
+        gaunit.GetComponent<Units>().setId(currentId);
     }
 
     public List<GameObject> getIaUnits()

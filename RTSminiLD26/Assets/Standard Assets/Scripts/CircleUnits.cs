@@ -4,65 +4,8 @@ using System.Collections;
 
 public class CircleUnits : Units
 {
-    public int team;
-
-    private Environnement env;
-    private float distancePercept = 15.0f;
-    private Vector3 destination;
-    private float energy;
+   
     private GameObject supporting;
-
-    public Environnement getEnv()
-    {
-        return env;
-    }
-
-    public int getTeam()
-    {
-        return team;
-    }
-
-    public void setTeam(int newTeam)
-    {
-        team = newTeam;
-    }
-
-    public float getDistancePercept()
-    {
-        return distancePercept;
-    }
-
-    public List<GameObject> getProximityEnemies()
-    {
-        return env.computeProximityEnemies(gameObject);
-    }
-
-    public List<GameObject> getProximityProds()
-    {
-        return env.computeProxymityProds(gameObject);
-    }
-
-    public void goTo(Vector3 dest)
-    {
-        destination = dest;
-
-    }
-
-    public float getEnergy()
-    {
-        return energy;
-    }
-
-    public bool mustDie()
-    {
-        if (energy <= 0) return true;
-        return false;
-    }
-
-    public void reduceEnergy(float dmg)
-    {
-        energy = energy - dmg;
-    }
 
     public bool suscribeSupport(GameObject batProds)
     {
@@ -90,6 +33,8 @@ public class CircleUnits : Units
     {
         base.Start();
         env = Environnement.getUniqueEnv();
+        distancePercept = 15.0f;
+        energy = 10.0f;
         Debug.Log("start : " + team);
     }
 
@@ -98,5 +43,8 @@ public class CircleUnits : Units
     {
         base.Update();
         Debug.Log("update : " + team);
+        suscribeSupport(getProximityProds()[0]);
+        if (supporting != null) Debug.Log(getId() + "supporting CC de la team : " + supporting.GetComponent<BuildingCircle>().getTeam());
+        else Debug.Log(getId() + " not supporting !!!");
     }
 }

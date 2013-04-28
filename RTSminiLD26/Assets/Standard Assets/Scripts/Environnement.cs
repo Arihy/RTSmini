@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Environnement {
+public class Environnement
+{
 
     private List<GameObject> iaUnits = new List<GameObject>();
     private List<GameObject> playerUnits = new List<GameObject>();
+    private List<GameObject> iaProds = new List<GameObject>();
+    private List<GameObject> playerProds = new List<GameObject>();
     private static Environnement uniqueEnv;
 
     public static Environnement getUniqueEnv()
@@ -70,5 +73,59 @@ public class Environnement {
             }
         }
         return proximitiesEnemies;
+    }
+
+    public void addProd(GameObject gabat)
+    {
+        int teamBat = gabat.GetComponent<BuildingCircle>().getTeam();
+        if (teamBat == 1)
+        {
+            iaProds.Add(gabat);
+        }
+        else
+        {
+            playerProds.Add(gabat);
+        }
+    }
+
+    public List<GameObject> getIaProds()
+    {
+        return iaProds;
+    }
+
+    public List<GameObject> getPlayerprods()
+    {
+        return playerProds;
+    }
+
+    public List<GameObject> computeProxymityProds(GameObject gounit)
+    {
+        Vector3 positionUnit = gounit.transform.position;
+
+        float distancePerceptUnit = gounit.GetComponent<CircleUnits>().getDistancePercept();
+
+        int teamUnit = gounit.GetComponent<CircleUnits>().getTeam();
+
+        List<GameObject> batProds;
+        List<GameObject> proximitiesProds = new List<GameObject>();
+        if (teamUnit == 1)
+        {
+            batProds = iaProds;
+        }
+        else
+        {
+            batProds = playerProds;
+        }
+
+        foreach (GameObject go in batProds)
+        {
+            Vector3 positionA = go.transform.position;
+            float distance = Vector3.Distance(positionA, positionUnit);
+            if (distance <= distancePerceptUnit)
+            {
+                proximitiesProds.Add(go);
+            }
+        }
+        return proximitiesProds;
     }
 }

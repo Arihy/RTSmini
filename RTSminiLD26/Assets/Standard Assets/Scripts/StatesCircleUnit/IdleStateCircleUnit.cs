@@ -16,7 +16,7 @@ public class IdleStateCircleUnit : RightClickableStateCircleUnit
         //TODO
     }
 
-    public override void checkNewState()
+    public override void checkOtherState()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         List<GameObject> enemies = unit.getProximityEnemies();

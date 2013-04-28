@@ -99,6 +99,5 @@ public class CircleUnits : Units
         playAnim();
         attack();
         checkNewState();
-       
     }
 }

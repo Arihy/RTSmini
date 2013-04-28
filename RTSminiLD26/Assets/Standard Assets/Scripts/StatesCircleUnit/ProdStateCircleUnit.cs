@@ -15,7 +15,7 @@ public class ProdStateCircleUnit : RightClickableStateCircleUnit
         //TODO
     }
 
-    public override void checkNewState()
+    public override void checkOtherState()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         //si le bâtiment de production n'existe plus on passe en idle

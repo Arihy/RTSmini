@@ -16,7 +16,7 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
         //TODO
     }
 
-    public override void checkNewState()
+    public override void checkOtherState()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         List<GameObject> enemies = unit.getProximityEnemies();
@@ -29,15 +29,18 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
         List<GameObject> enemies = unit.getProximityEnemies();
         if (enemies.Count > 0)
         {
-
-            //calcul de la distance avec l'ennemi le plus proche
-            Vector3 positionA = goCircleUnit.transform.position;
-            Vector3 positionUnit = enemies[0].transform.position;
-            float distance = Vector3.Distance(positionA, positionUnit);
-            if (unit.getDistanceAttack() <= distance)
+            if(Time.frameCount - unit.getNbFrameSinceLastShot() >= unit.getAttackFrequency())//vérifier que l'on peut attaquer en terme de fréquence
             {
-                //attacks !!!!
-
+                //calcul de la distance avec l'ennemi le plus proche
+                Vector3 positionA = goCircleUnit.transform.position;
+                Vector3 positionUnit = enemies[0].transform.position;
+                float distance = Vector3.Distance(positionA, positionUnit);
+                if (unit.getDistanceAttack() <= distance)
+                {
+                    //attacks !!!!
+                    Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " attacks : " + enemies[0].GetComponent<Units>().getId());
+                    enemies[0].GetComponent<Units>().reduceEnergy(unit.getAttackStrength());
+                }
             }
         }
     }

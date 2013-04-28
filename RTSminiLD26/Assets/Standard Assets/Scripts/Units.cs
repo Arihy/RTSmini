@@ -33,6 +33,10 @@ public class Units : MonoBehaviour {
         return env;
     }
 
+    public float getAttackStrength()
+    {
+        return attackStrength;
+    }
 
     public int getNbFrameSinceLastShot()
     {
@@ -42,6 +46,11 @@ public class Units : MonoBehaviour {
     public void setNbFrameSinceLastShot(int newNbFrame)
     {
         nbFrameSinceLastShot = newNbFrame;
+    }
+
+    public int getAttackFrequency()
+    {
+        return attackFrequency;
     }
 
     public float getDistanceAttack()
@@ -77,7 +86,6 @@ public class Units : MonoBehaviour {
     public void goTo(Vector3 dest)
     {
         destination = dest;
-
     }
 
     public float getEnergy()

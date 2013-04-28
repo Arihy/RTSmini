@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 95: {fileID: 9500000}
   m_Layer: 0
-  m_Name: Unit_Sphere
+  m_Name: Unit_Sphere 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,12 +26,6 @@ GameObject:
   - 4: {fileID: 400002}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-<<<<<<< HEAD:RTSminiLD26/Assets/Standard Assets/Prefabs/SphereUnitPreFab.prefab
-  - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
-  - 54: {fileID: 5400000}
-=======
->>>>>>> Prefab - Units + BatSphere:RTSminiLD26/Assets/Standard Assets/Prefabs/Unit_Sphere.prefab
   m_Layer: 0
   m_Name: pSphere2
   m_TagString: Untagged
@@ -85,74 +79,20 @@ MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-<<<<<<< HEAD:RTSminiLD26/Assets/Standard Assets/Prefabs/SphereUnitPreFab.prefab
-  m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5400000
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &11400000
-MonoBehaviour:
-=======
   m_GameObject: {fileID: 100002}
   m_Mesh: {fileID: 4300000, guid: 8315f8b23a3ae4148826f26d2a68374f, type: 3}
 --- !u!95 &9500000
 Animator:
->>>>>>> Prefab - Units + BatSphere:RTSminiLD26/Assets/Standard Assets/Prefabs/Unit_Sphere.prefab
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-<<<<<<< HEAD:RTSminiLD26/Assets/Standard Assets/Prefabs/SphereUnitPreFab.prefab
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdbda527ae4370443917fe25c885c614, type: 3}
-  m_Name: 
-  selected: 0
-  team: 0
-  floorOffset: 1
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330a603f5ffec6844a430300bf490cd5, type: 3}
-  m_Name: 
-  selectionHighlight: {fileID: 2800000, guid: d85e5e51d2b0241c1883a8d69fb59e97, type: 3}
---- !u!135 &13500000
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
-=======
   m_Avatar: {fileID: 9000000, guid: 8315f8b23a3ae4148826f26d2a68374f, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
->>>>>>> Prefab - Units + BatSphere:RTSminiLD26/Assets/Standard Assets/Prefabs/Unit_Sphere.prefab
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

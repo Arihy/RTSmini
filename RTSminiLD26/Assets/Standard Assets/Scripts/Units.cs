@@ -11,10 +11,12 @@ public class Units : MonoBehaviour {
 
     protected Environnement env;
     protected float distancePercept;
+    protected float distanceAttack;
     protected float energy;
     protected Vector3 destination;
     protected float attackStrength;
     protected int attackFrequency;
+    private int nbFrameSinceLastShot;
 
     public int getId()
     {
@@ -29,6 +31,22 @@ public class Units : MonoBehaviour {
     public Environnement getEnv()
     {
         return env;
+    }
+
+
+    public int getNbFrameSinceLastShot()
+    {
+        return nbFrameSinceLastShot;
+    }
+
+    public void setNbFrameSinceLastShot(int newNbFrame)
+    {
+        nbFrameSinceLastShot = newNbFrame;
+    }
+
+    public float getDistanceAttack()
+    {
+        return distanceAttack;
     }
 
     public int getTeam()
@@ -87,6 +105,7 @@ public class Units : MonoBehaviour {
     public virtual void Start()
     {
         Debug.Log("start Units");
+        nbFrameSinceLastShot = 0;
     }
 	
 	// Update is called once per frame

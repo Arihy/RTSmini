@@ -12,6 +12,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: SphereUnitPreFab
   m_TagString: Untagged
@@ -66,6 +67,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdbda527ae4370443917fe25c885c614, type: 3}
   m_Name: 
   team: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330a603f5ffec6844a430300bf490cd5, type: 3}
+  m_Name: 
+  selectionHighlight: {fileID: 0}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CircleUnits : MonoBehaviour {
+public class CircleUnits : Units {
     public int team;
 
     public int getTeam()
@@ -14,12 +14,14 @@ public class CircleUnits : MonoBehaviour {
         team = newTeam;
     }
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        base.Start();
         Debug.Log("start : " + team);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+        base.Update();
         Debug.Log("update : " + team);
 	}
 }

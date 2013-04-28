@@ -213,8 +213,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18f17b6cf22e32046b564a0823c5e871, type: 3}
   m_Name: 
-  team: 2
   prefabUnit: {fileID: 100000, guid: 2b08ebc54951cf64f8a92fc50cfd6ec5, type: 2}
+  team: 2
 --- !u!1 &1776956239
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +229,7 @@ GameObject:
   - 81: {fileID: 1776956240}
   - 114: {fileID: 1776956245}
   - 65: {fileID: 1776956247}
+  - 114: {fileID: 1776956246}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -306,6 +307,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 798c0bcb08469084a850088b029aa0ac, type: 3}
   m_Name: 
+--- !u!114 &1776956246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776956239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330a603f5ffec6844a430300bf490cd5, type: 3}
+  m_Name: 
+  selectionHighlight: {fileID: 2800000, guid: d85e5e51d2b0241c1883a8d69fb59e97, type: 3}
 --- !u!65 &1776956247
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -318,30 +330,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1862050157
+--- !u!1 &1986672802
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 1862050161}
-  - 33: {fileID: 1862050160}
-  - 64: {fileID: 1862050159}
-  - 23: {fileID: 1862050158}
+  - 4: {fileID: 1986672806}
+  - 33: {fileID: 1986672805}
+  - 136: {fileID: 1986672804}
+  - 23: {fileID: 1986672803}
+  - 114: {fileID: 1986672807}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &1862050158
+--- !u!23 &1986672803
 Renderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862050157}
+  m_GameObject: {fileID: 1986672802}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -354,37 +367,49 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!64 &1862050159
-MeshCollider:
+--- !u!136 &1986672804
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862050157}
+  m_GameObject: {fileID: 1986672802}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1862050160
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &1986672805
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862050157}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1862050161
+  m_GameObject: {fileID: 1986672802}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1986672806
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1862050157}
+  m_GameObject: {fileID: 1986672802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .418827057, y: .358903408, z: .0592498779}
+  m_LocalPosition: {x: 2.45076275, y: 0, z: -3.06397867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1986672807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1986672802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ff206de4c672541b982dec6eea3584, type: 3}
+  m_Name: 
+  prefabUnit: {fileID: 0}
+  team: 2
 --- !u!1 &2037212533
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,5 +487,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18f17b6cf22e32046b564a0823c5e871, type: 3}
   m_Name: 
-  team: 1
   prefabUnit: {fileID: 100000, guid: 2b08ebc54951cf64f8a92fc50cfd6ec5, type: 2}
+  team: 1

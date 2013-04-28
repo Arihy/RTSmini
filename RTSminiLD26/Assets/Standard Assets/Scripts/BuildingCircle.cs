@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BuildingCircle : Building
 {
-    public GameObject prefabUnit;
+    
     private int supportMax;
     private int countSupport = 0;
     private List<GameObject> support = new List<GameObject>();
@@ -60,9 +60,8 @@ public class BuildingCircle : Building
     {
         base.Start();
         delayBetweenProd = 2;
-        lastProdTime = Time.time;
-        countUnits = 0;
-        env = Environnement.getUniqueEnv();
+       
+        
         //enregistremet du batiment auprès de l'environnement
         env.addProd(gameObject);
         supportMax = 2;

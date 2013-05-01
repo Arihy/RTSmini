@@ -11,21 +11,20 @@ public class DeathStateCircleUnit : StateCircleUnit
 
     public override void playAnim()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is just DEAD");
+        //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is just DEAD");
         //TODO
     }
 
     public override void checkNewState()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " no new state i'm dead you know!!! but i still have few last things to do ....");
+        //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " no new state i'm dead you know!!! but i still have few last things to do ....");
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         //se retirer de tout support de prod
         GameObject supporting =  unit.getSupporting();
-        if (supporting != null) supporting.GetComponent<BuildingCircle>().removeSupport(goCircleUnit);
-        //se retirer de l'environnement
-        unit.getEnv().removeUnit(goCircleUnit);
+        if (supporting != null) unit.unsuscribeSupport(supporting);//supporting.GetComponent<BuildingCircle>().removeSupport(goCircleUnit);
+		
         //destroy
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " sends Destroy!!!!");
+        //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " sends Destroy!!!!");
         goCircleUnit.GetComponent<CircleUnits>().destroy();
     }
 }

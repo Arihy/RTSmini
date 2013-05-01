@@ -4,10 +4,11 @@ using System.Collections;
 public class DeplacementCamera : MonoBehaviour {
 
 	// Use this for initialization
-    private float speed = 10.0f;
+    private float speed = 40.0f;
     private float translateX;
-    private float translateY;
+    private float translateZ;
     private Transform thisTransform;
+	
 	void Start () {
         thisTransform = transform;
 	}
@@ -16,9 +17,9 @@ public class DeplacementCamera : MonoBehaviour {
 	void Update () {
 
         translateX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        translateY = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        translateZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
-        thisTransform.Translate(translateX,translateY,0);
+        thisTransform.Translate(translateX, 0, translateZ);
 	
 	}
 }

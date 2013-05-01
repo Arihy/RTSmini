@@ -13,6 +13,7 @@ public class CircleUnits : Units
     public StateCircleUnit STATE_PROD;
     public StateCircleUnit STATE_ATTACK;
     public StateCircleUnit STATE_GOINGTO;
+	public StateCircleUnit STATE_TRIANGLEPROD;
 
     private StateCircleUnit lastState;
     private StateCircleUnit currentState;
@@ -88,15 +89,17 @@ public class CircleUnits : Units
         STATE_PROD = new ProdStateCircleUnit(gameObject);
         STATE_ATTACK = new AttackStateCircleUnit(gameObject);
         STATE_GOINGTO = new GoingToStateCircleUnit(gameObject);
+		STATE_TRIANGLEPROD = new TriangleProdStateCircleUnit(gameObject);
         currentState = STATE_BIRTH;
         env = Environnement.getUniqueEnv();
-        distancePercept = 15.0f;
-        distanceAttack = 1.0f;
-        energy = 10.0f;
+        distancePercept = 30.0f;
+        distanceAttack = 0.05f;//seems to be useless ... something messy somewhere
+        setInitialEnergy(200.0f);
         attackStrength = 2.0f;
-        attackFrequency = 10;
-        speed = 5.0f;
+        attackFrequency = 240;
+        speed = 30.0f;
         destination = Vector3.zero;
+		initialVectorScale = gameObject.transform.localScale ;
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ public class ProdStateCircleUnit : RightClickableStateCircleUnit
 
     public override void playAnim()
     {
-       // Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is in PROD");
+       //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is in PROD");
         //TODO
     }
 

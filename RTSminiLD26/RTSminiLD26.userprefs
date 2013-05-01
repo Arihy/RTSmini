@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Standard Assets/Scripts/StatesBuildingCircle/ProdStateBuildingCircle.cs">
+    <Files>
+      <File FileName="Assets/Standard Assets/Scripts/StatesBuildingCircle/ProdStateBuildingCircle.cs" Line="13" Column="74" />
+      <File FileName="Assets/Standard Assets/Scripts/StatesCircleUnit/GoingToStateCircleUnit.cs" Line="34" Column="61" />
+      <File FileName="Assets/Standard Assets/Scripts/BuildingCircle.cs" Line="146" Column="12" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

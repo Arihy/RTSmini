@@ -74,7 +74,7 @@ public class BoxSelection : MonoBehaviour {
     {
         if (startClick != -Vector3.one)
         {
-            GUI.color = new Color(1, 1, 1, 0.5f);
+            GUI.color = new Color(1, 1, 1, 0.1f);
             GUI.DrawTexture(selection, selectionHighlight);
         }
     }

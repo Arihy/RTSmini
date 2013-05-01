@@ -16,6 +16,7 @@ public abstract class StateCircleUnit {
 
     public abstract void playAnim();
     public abstract void checkNewState();
+	public virtual void produceTriangle(){}
     public virtual void move() { }
     public virtual void attack(){ }
 }

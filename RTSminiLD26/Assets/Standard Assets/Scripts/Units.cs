@@ -3,22 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Units : MonoBehaviour {
-
+	public GameObject mouseSpriteMove;
     private int id;
 
     public bool selected = false;
     public int team;
     protected float speed;
-    protected float stopDistanceOffset = 0.5f;
+    protected float stopDistanceOffset = 3.2f;
 
     protected Environnement env;
     protected float distancePercept;
     protected float distanceAttack;
-    protected float energy;
+    private float energy;
+	private float energyMax;
     protected Vector3 destination;
     protected float attackStrength;
     protected int attackFrequency;
     private int nbFrameSinceLastShot;
+	protected Vector3 initialVectorScale;
 
     public float floorOffset = 1;
     private Vector3 moveToDestination = Vector3.zero;
@@ -32,7 +34,18 @@ public class Units : MonoBehaviour {
     {
         id = newId;
     }
-
+	
+	protected void setInitialEnergy(float newenergy)
+	{
+		energy = newenergy;
+		energyMax = newenergy;
+	}
+	
+	public float getEnergyMax()
+	{
+		return energyMax;
+	}
+	
     public float getSpeed()
     {
         return speed;
@@ -107,6 +120,11 @@ public class Units : MonoBehaviour {
     {
         return env.computeProxymityProds(gameObject);
     }
+	
+	public List<GameObject> getProximityTriangleProds()
+	{
+		return env.computeProxymityTriangleProds(gameObject);
+	}
 
     public void goTo(Vector3 dest)
     {
@@ -131,8 +149,18 @@ public class Units : MonoBehaviour {
 
     public void destroy()
     {
+		//se retirer de l'environnement
+        env.removeUnit(gameObject);
         Destroy(gameObject);
     }
+	
+	protected void computeUnityScale()
+	{
+		//calcul du ratio
+		float ratio = energy / energyMax ;
+		//application du ratio à la taille
+		if(ratio > 0.40f) gameObject.transform.localScale = ratio * initialVectorScale;
+	}
 
     //Start is called to intialize the instance
     public virtual void Start()
@@ -152,10 +180,20 @@ public class Units : MonoBehaviour {
             if (selected)
             {
                 //must change state
-                renderer.material.color = Color.red;
+                foreach(Transform child in transform)
+				{
+					if(child.name == "Sphere")
+						child.renderer.enabled = true;
+				}
             }
             else //must change state
-                renderer.material.color = Color.white;
+			{
+				foreach(Transform child in transform)
+				{
+					if(child.name == "Sphere")
+						child.renderer.enabled = false;
+				}
+			}
         }
 
         if (selected && Input.GetMouseButtonUp(1))
@@ -170,6 +208,10 @@ public class Units : MonoBehaviour {
             {
                 Vector3 dest = hit.point;
                 Debug.Log("destination : " + dest);
+				
+				Vector3 newPosition = dest;
+				newPosition.y = 1;
+				Instantiate(mouseSpriteMove, newPosition, Quaternion.identity);
 
                 if (dest != Vector3.zero)
                 {
@@ -182,7 +224,7 @@ public class Units : MonoBehaviour {
             }
             
         }
-
+		computeUnityScale();
 	}
 
 }

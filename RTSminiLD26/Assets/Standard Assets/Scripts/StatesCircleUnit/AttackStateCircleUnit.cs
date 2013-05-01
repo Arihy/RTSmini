@@ -12,7 +12,7 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
 
     public override void playAnim()
     {
-        Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is ATTACK");
+        //Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " is ATTACK");
         //TODO
     }
 
@@ -20,6 +20,7 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
         List<GameObject> enemies = unit.getProximityEnemies();
+		//Debug.Log("Enemies : " + enemies.Count);
         if (enemies.Count == 0) unit.setCurrentState(unit.STATE_IDLE);
     }
 
@@ -38,7 +39,7 @@ public class AttackStateCircleUnit : RightClickableStateCircleUnit
                 if (unit.getDistanceAttack() <= distance)
                 {
                     //attacks !!!!
-                    Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " attacks : " + enemies[0].GetComponent<Units>().getId());
+          //          Debug.Log("CircleUnit " + goCircleUnit.GetComponent<CircleUnits>().getId() + " attacks : " + enemies[0].GetComponent<Units>().getId());
                     enemies[0].GetComponent<Units>().reduceEnergy(unit.getAttackStrength());
                 }
             }

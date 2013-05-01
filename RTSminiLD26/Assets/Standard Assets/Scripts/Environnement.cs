@@ -10,6 +10,7 @@ public class Environnement
     private List<GameObject> playerUnits = new List<GameObject>();
     private List<GameObject> iaProds = new List<GameObject>();
     private List<GameObject> playerProds = new List<GameObject>();
+	private List<GameObject> triangleProds = new List<GameObject>();
 
     private int currentId;
 
@@ -105,8 +106,35 @@ public class Environnement
         {
             playerProds.Add(gabat);
         }
+		currentId++;
+        gabat.GetComponent<Building>().setId(currentId);
     }
-
+	
+	public void removeProd(GameObject gabat)
+	{
+		int teamProd = gabat.GetComponent<Building>().getTeam();
+        if (teamProd == 1)
+        {
+            iaProds.Remove(gabat);
+        }
+        else
+        {
+            playerProds.Remove(gabat);
+        }
+	}
+	
+	public void addProdTriangle(GameObject gabat)
+    {
+        triangleProds.Add(gabat);
+		currentId++;
+        gabat.GetComponent<Building>().setId(currentId);
+    }
+	
+	public void removeProdTriangle(GameObject gabat)
+	{
+		triangleProds.Remove(gabat);
+	}
+	
     public List<GameObject> getIaProds()
     {
         return iaProds;
@@ -147,4 +175,25 @@ public class Environnement
         }
         return proximitiesProds;
     }
+	
+	public List<GameObject> computeProxymityTriangleProds(GameObject gounit)
+	{
+		Vector3 positionUnit = gounit.transform.position;
+
+        float distancePerceptUnit = gounit.GetComponent<CircleUnits>().getDistancePercept();
+
+        int teamUnit = gounit.GetComponent<CircleUnits>().getTeam();
+
+        List<GameObject> proximitiesTriangleProds = new List<GameObject>();
+        foreach (GameObject go in triangleProds)
+        {
+            Vector3 positionA = go.transform.position;
+            float distance = Vector3.Distance(positionA, positionUnit);
+            if (distance <= distancePerceptUnit && (go.GetComponent<BuildingTriangle>().getTeam() == 0 || go.GetComponent<BuildingTriangle>().getTeam() == teamUnit))
+            {
+                proximitiesTriangleProds.Add(go);
+            }
+        }
+        return proximitiesTriangleProds;
+	}
 }

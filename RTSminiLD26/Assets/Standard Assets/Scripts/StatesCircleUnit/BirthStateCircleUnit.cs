@@ -16,6 +16,13 @@ public class BirthStateCircleUnit : StateCircleUnit
         //TODO
     }
 
+    public override void playSound()
+    {
+        CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();
+        unit.audio.clip=unit.audioPop;
+        unit.audio.Play();
+    }
+
     public override void checkNewState()
     {
         CircleUnits unit = goCircleUnit.GetComponent<CircleUnits>();

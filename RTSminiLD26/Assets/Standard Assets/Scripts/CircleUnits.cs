@@ -4,6 +4,8 @@ using System.Collections;
 
 public class CircleUnits : Units
 {
+    public AudioClip audioPop;
+    public AudioClip audioAttack;
    
     private GameObject supporting;
 
@@ -63,6 +65,11 @@ public class CircleUnits : Units
         currentState.playAnim();
     }
 
+    private void playSound()
+    {
+        currentState.playSound();
+    }
+
     private void checkNewState()
     {
         currentState.checkNewState();
@@ -106,6 +113,7 @@ public class CircleUnits : Units
     public override void Update()
     {
         base.Update();
+        playSound();
         playAnim();
         attack();
         move();

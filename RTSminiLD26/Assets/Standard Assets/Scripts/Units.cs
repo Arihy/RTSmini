@@ -7,6 +7,7 @@ public class Units : MonoBehaviour {
     private int id;
 
     public bool selected = false;
+	private bool selectedByClick = false;
     public int team;
     protected float speed;
     protected float stopDistanceOffset = 3.2f;
@@ -173,9 +174,12 @@ public class Units : MonoBehaviour {
     {
         if (renderer.isVisible && Input.GetMouseButton(0))
         {
-            Vector3 camPos = Camera.mainCamera.WorldToScreenPoint(transform.position);
-            camPos.y = BoxSelection.InvertMouseY(camPos.y);
-            selected = BoxSelection.selection.Contains(camPos);
+			if(!selectedByClick)
+			{
+	            Vector3 camPos = Camera.mainCamera.WorldToScreenPoint(transform.position);
+	            camPos.y = BoxSelection.InvertMouseY(camPos.y);
+	            selected = BoxSelection.selection.Contains(camPos);
+			}
 
             if (selected)
             {
@@ -225,6 +229,20 @@ public class Units : MonoBehaviour {
             
         }
 		computeUnityScale();
+	}
+	
+	private void OnMouseDown()
+	{
+		selectedByClick = true;
+		selected = true;
+	}
+	
+	private void OnMouseUp()
+	{
+		if(selectedByClick)
+			selected = true;
+		
+		selectedByClick = false;
 	}
 
 }
